@@ -1,0 +1,93 @@
+/* ============================================
+   ImageCarousel — 图片轮播组件
+   ============================================ */
+
+.image-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.image-carousel__container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.image-carousel__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.image-carousel__slide--active {
+  opacity: 1;
+}
+
+.image-carousel__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* —— 导航按钮 —— */
+.image-carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.3s ease;
+}
+
+.image-carousel__btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.image-carousel__btn--prev {
+  left: 12px;
+}
+
+.image-carousel__btn--next {
+  right: 12px;
+}
+
+/* —— 指示点 —— */
+.image-carousel__dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.image-carousel__dot {
+  width: 8px;
+  height: 8px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.image-carousel__dot--active {
+  background: #fff;
+  width: 24px;
+  border-radius: 4px;
+}

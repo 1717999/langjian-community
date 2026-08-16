@@ -1,0 +1,61 @@
+.custom-cursor__ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(212, 112, 58, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    border-width 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  will-change: transform;
+  box-shadow: 0 0 8px rgba(212, 112, 58, 0.2);
+}
+
+.custom-cursor__ring.is-hover {
+  width: 34px;
+  height: 34px;
+  border-width: 2px;
+  border-color: rgba(212, 112, 58, 0.6);
+  background-color: rgba(212, 112, 58, 0.08);
+  box-shadow: 0 0 10px rgba(212, 112, 58, 0.3);
+}
+
+.custom-cursor__ring.is-clicked {
+  width: 18px;
+  height: 18px;
+  border-width: 2px;
+  border-color: rgba(168, 80, 31, 0.7);
+  background-color: rgba(212, 112, 58, 0.12);
+}
+
+.custom-cursor__dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  background-color: #d4703a;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100000;
+  transition:
+    width 0.15s ease,
+    height 0.15s ease,
+    background-color 0.15s ease;
+  will-change: transform;
+  box-shadow: 0 0 8px rgba(212, 112, 58, 0.6);
+}
+
+.custom-cursor__dot.is-clicked {
+  width: 3px;
+  height: 3px;
+  background-color: #a8501f;
+}

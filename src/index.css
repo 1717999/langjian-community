@@ -1,0 +1,364 @@
+/* ============================================
+   浪尖儿社区 — 赛博朋克 × 年轻向上 × 高级
+   Design Tokens & Global Styles
+   ============================================ */
+
+:root {
+  /* —— 主背景 —— */
+  --bg-primary: #08080c;
+  --bg-secondary: #0f0f18;
+  --bg-card: #14141f;
+  --bg-card-hover: #1a1a2a;
+
+  /* —— 文字 —— */
+  --text-primary: #f0f0f5;
+  --text-secondary: #c8d0dc;
+  --text-muted: #8a94a8;
+
+  /* —— 核心点缀：赛博蓝 —— */
+  --cyber-blue: #00d4ff;
+  --cyber-blue-dim: #0099cc;
+  --cyber-blue-glow: rgba(0, 212, 255, 0.4);
+  --cyber-blue-glow-strong: rgba(0, 212, 255, 0.7);
+
+  /* —— 辅助色：橘黄 —— */
+  --accent-orange: #ff6b35;
+  --accent-orange-dim: #cc5522;
+  --accent-orange-glow: rgba(255, 107, 53, 0.4);
+
+  /* —— 辅助色：翠绿（Logo 绿） —— */
+  --accent-green: #3dd68c;
+  --accent-green-dim: #2aa86a;
+  --accent-green-glow: rgba(61, 214, 140, 0.35);
+  --accent-green-glow-strong: rgba(61, 214, 140, 0.6);
+
+  /* —— 边框、分割线 —— */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-dim: rgba(255, 255, 255, 0.1);
+  --border-glow: rgba(0, 212, 255, 0.25);
+
+  /* —— 字体 —— */
+  --font-display: 'Noto Serif SC', 'Georgia', 'Times New Roman', serif;
+  --font-body: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+
+  /* —— 尺寸 —— */
+  --max-width: 1280px;
+  --nav-height: 72px;
+
+  /* —— 过渡 —— */
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-normal: 0.4s;
+  --duration-slow: 0.7s;
+}
+
+/* —— Reset & Base —— */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cyber-blue-dim) var(--bg-primary);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cyber-blue-dim);
+  border-radius: 3px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* 可点击元素：隐藏默认光标，使用自定义光标 */
+a, button, .btn, [role="button"],
+.seniors__person, .courses__nav-item, .courses__sub-card,
+.offline__lightbox-nav, .contact-social-item,
+input, textarea, select, label {
+  cursor: none;
+}
+
+/* 互动元素 hover 时增加橙色发光跟随 */
+a:hover, button:hover, .btn:hover,
+.seniors__person:hover, .courses__nav-item:hover {
+  filter: drop-shadow(0 0 6px rgba(255, 140, 66, 0.5));
+}
+
+/* —— 背景纹理：网格 + 屏幕暗角 —— */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.12) 1px, transparent 1px);
+  background-size: 64px 64px;
+  box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+  transition:
+    box-shadow 1.5s cubic-bezier(0.22, 1, 0.36, 1),
+    background-image 1.5s ease;
+}
+
+/* —— 全站扫描线 —— */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.015) 2px,
+    rgba(0, 0, 0, 0.015) 4px
+  );
+  animation: scanlines 0.1s linear infinite;
+  opacity: 0.15;
+  transition: opacity 1.5s ease;
+}
+
+/* —— 阶段1: 背景展示（加载消失后，明亮背景先出现）—— */
+body.app-background::before {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.15);
+}
+
+body.app-background::after {
+  opacity: 0.2;
+}
+
+/* —— 阶段2: 内容出现时，背景仍保持较亮 —— */
+body.app-content::before {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.06) 1px, transparent 1px);
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.35);
+}
+
+body.app-content::after {
+  opacity: 0.3;
+}
+
+/* —— 阶段3: 就绪状态（最终赛博朋克暗色）—— */
+body.app-ready::before {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.02) 1px, transparent 1px);
+  box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.55);
+}
+
+body.app-ready::after {
+  opacity: 0.4;
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
+
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* —— Typography —— */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+p {
+  color: var(--text-primary);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* —— Container —— */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* —— Section Common —— */
+.section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* —— Neon Text Utility —— */
+.neon-text {
+  color: var(--cyber-blue);
+  text-shadow:
+    0 0 7px var(--cyber-blue-glow),
+    0 0 20px var(--cyber-blue-glow),
+    0 0 40px var(--cyber-blue-glow-strong),
+    0 0 80px var(--cyber-blue-glow);
+}
+
+/* —— Glow Border Utility —— */
+.glow-border {
+  position: relative;
+  border: 1px solid var(--border-glow);
+  transition: border-color var(--duration-normal) var(--ease-out-expo);
+}
+.glow-border:hover {
+  border-color: var(--cyber-blue);
+  box-shadow:
+    0 0 15px var(--cyber-blue-glow),
+    inset 0 0 15px rgba(0, 212, 255, 0.05);
+}
+
+/* —— Button —— */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out-expo);
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.btn-primary {
+  background: transparent;
+  color: var(--cyber-blue);
+  border: 1px solid var(--cyber-blue);
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--cyber-blue);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out-expo);
+  z-index: -1;
+}
+.btn-primary:hover {
+  color: var(--bg-primary);
+}
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-orange {
+  background: transparent;
+  color: var(--accent-orange);
+  border: 1px solid var(--accent-orange);
+}
+.btn-orange::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent-orange);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out-expo);
+  z-index: -1;
+}
+.btn-orange:hover {
+  color: var(--bg-primary);
+}
+.btn-orange:hover::before {
+  opacity: 1;
+}
+
+/* —— Section Divider —— */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-dim) 20%,
+    var(--cyber-blue-dim) 50%,
+    var(--border-dim) 80%,
+    transparent
+  );
+  position: relative;
+}
+
+/* Pulsing scan bar on divider */
+.section-divider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 212, 255, 0.3),
+    transparent
+  );
+  animation: divider-scan 4s ease-in-out infinite;
+}
+
+@keyframes divider-scan {
+  0% { left: -60%; }
+  100% { left: 100%; }
+}
+
+/* —— Section Entrance Glow —— */
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 212, 255, 0.05) 30%,
+    rgba(0, 212, 255, 0.2) 50%,
+    rgba(0, 212, 255, 0.05) 70%,
+    transparent
+  );
+  z-index: 1;
+  pointer-events: none;
+}

@@ -1,0 +1,337 @@
+/* ============================================
+   AIIntro — AI 社区介绍板块
+   ============================================ */
+
+.ai-intro {
+  position: relative;
+  padding: 120px 0;
+  overflow: hidden;
+}
+
+.ai-intro .container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+/* —— 标签 —— */
+.ai-intro__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--accent-green);
+  margin-bottom: 8px;
+}
+
+.ai-intro__tag-line {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--accent-green);
+  box-shadow: 0 0 6px var(--accent-green-glow);
+}
+
+/* —— 主标题 —— */
+.ai-intro__title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.5vw, 56px);
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin: 0;
+}
+
+.ai-intro__title-sub {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* —— Tab 切换 —— */
+.ai-intro__tabs {
+  display: flex;
+  gap: 16px;
+  margin: 16px 0 0;
+}
+
+.ai-intro__tab {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border-dim);
+  border-radius: 100px;
+  padding: 10px 28px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ai-intro__tab:hover {
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+}
+
+.ai-intro__tab--active {
+  color: #000;
+  background: var(--cyber-blue);
+  border-color: var(--cyber-blue);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+/* —— 直播横向滚动 —— */
+.ai-intro__live {
+  width: 100%;
+  margin-top: 24px;
+}
+
+/* —— 3D 轮播容器 —— */
+.ai-intro__gallery {
+  width: 100%;
+  height: 450px;
+  position: relative;
+  margin-top: 16px;
+}
+
+.ai-intro__scroll-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.ai-intro__scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0 30px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 212, 255, 0.3) transparent;
+}
+
+.ai-intro__scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.ai-intro__scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.ai-intro__scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.3);
+  border-radius: 3px;
+}
+
+.ai-intro__card {
+  position: relative;
+  flex-shrink: 0;
+  width: 300px;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ai-intro__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.ai-intro__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ai-intro__card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ai-intro__card:hover .ai-intro__card-overlay {
+  opacity: 1;
+}
+
+.ai-intro__card-overlay span {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* —— 导航按钮 —— */
+.ai-intro__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.ai-intro__nav:hover {
+  background: var(--cyber-blue);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.ai-intro__nav--prev {
+  left: 8px;
+}
+
+.ai-intro__nav--next {
+  right: 8px;
+}
+
+/* —— 区块标题 —— */
+.ai-intro__section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 32px 0 16px;
+  padding-left: 12px;
+  border-left: 3px solid var(--cyber-blue);
+}
+
+/* —— 直播反馈列表 —— */
+.ai-intro__feedback-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ai-intro__feedback-item {
+  display: flex;
+  align-items: stretch;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-dim);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ai-intro__feedback-item:hover {
+  border-color: rgba(0, 212, 255, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.ai-intro__feedback-header {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 20px;
+  gap: 12px;
+  border-right: 1px solid var(--border-dim);
+}
+
+.ai-intro__feedback-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.ai-intro__feedback-line {
+  font-size: 14px;
+  color: var(--cyber-blue);
+  letter-spacing: 0.1em;
+}
+
+.ai-intro__feedback-img {
+  flex: 1;
+  min-height: 160px;
+  overflow: hidden;
+}
+
+.ai-intro__feedback-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* —— 线下社区 —— */
+.ai-intro__offline {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.ai-intro__placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 16px;
+}
+
+/* —— 响应式 —— */
+@media (max-width: 768px) {
+  .ai-intro {
+    padding: 80px 0;
+  }
+  .ai-intro__title {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ai-intro__tabs {
+    gap: 12px;
+  }
+  .ai-intro__tab {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+  .ai-intro__card {
+    width: 260px;
+    height: 180px;
+  }
+  .ai-intro__nav {
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+  .ai-intro__feedback-item {
+    flex-direction: column;
+  }
+  .ai-intro__feedback-header {
+    flex: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border-dim);
+    padding: 16px 20px;
+  }
+  .ai-intro__feedback-img {
+    min-height: 140px;
+  }
+  .ai-intro__gallery {
+    height: 350px;
+  }
+}

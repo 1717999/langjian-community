@@ -1,0 +1,349 @@
+/* ============================================
+   MetroLineCard — 地铁线路卡片组件
+   ============================================ */
+
+.metro-line {
+  width: 100%;
+  padding: 340px 20px 80px;
+  position: relative;
+}
+
+/* —— 横向轨道 —— */
+.metro-line__track {
+  position: absolute;
+  bottom: 100px;
+  left: 40px;
+  right: 40px;
+  height: 6px;
+  background: #22c55e;
+  border-radius: 3px;
+  z-index: 1;
+}
+
+/* —— 卡片容器 —— */
+.metro-line__card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  z-index: 2;
+  padding: 0 20px;
+}
+
+/* —— 每个节点组 —— */
+.metro-line__group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+  cursor: pointer;
+}
+
+/* —— 节点圆点 —— */
+.metro-line__point {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #000;
+  position: relative;
+  z-index: 3;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.metro-line__point-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  background: #22c55e;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease-in-out;
+}
+
+.metro-line__group:hover .metro-line__point {
+  border-width: 5px;
+  transform: scale(1.1);
+}
+
+.metro-line__group:hover .metro-line__point-inner {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* —— 节点标签 —— */
+.metro-line__label {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+.metro-line__label span {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  color: #666;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.metro-line__group:hover .metro-line__label {
+  opacity: 0;
+}
+
+/* —— 悬停时显示的信息卡片 —— */
+.metro-line__info {
+  position: absolute;
+  top: -280px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  background: #22c55e;
+  border-radius: 16px;
+  padding: 20px 16px 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+  z-index: 10;
+  box-shadow: 0 20px 50px rgba(34, 197, 94, 0.4);
+}
+
+/* 三角指示器 */
+.metro-line__info::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid #22c55e;
+}
+
+.metro-line__group:hover .metro-line__info {
+  opacity: 1;
+  pointer-events: auto;
+  top: -300px;
+}
+
+/* —— 信息卡片头部 —— */
+.metro-line__info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.metro-line__info-header span:first-child {
+  font-size: 13px;
+  font-weight: 700;
+  color: #000;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.metro-line__info-line {
+  font-size: 11px;
+  font-weight: 600;
+  color: #000;
+  opacity: 0.7;
+}
+
+/* —— 信息卡片图片 —— */
+.metro-line__info-img {
+  width: 100%;
+  height: 140px;
+  background: #fff;
+  border: 3px solid #000;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.metro-line__info-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* —— 响应式 —— */
+@media (max-width: 768px) {
+  .metro-line {
+    padding: 20px 10px 80px;
+  }
+
+  .metro-line__track {
+    bottom: 90px;
+    left: 20px;
+    right: 20px;
+  }
+
+  .metro-line__card {
+    gap: 10px;
+  }
+
+  .metro-line__group {
+    width: auto;
+    flex: 1;
+  }
+
+  .metro-line__label {
+    bottom: -40px;
+    transform: translateX(-50%);
+  }
+
+  .metro-line__label span {
+    font-size: 12px;
+  }
+
+  .metro-line__info {
+    top: -240px;
+    width: 180px;
+    padding: 14px 12px 12px;
+  }
+
+  .metro-line__group:hover .metro-line__info {
+    top: -260px;
+  }
+
+  .metro-line__info-img {
+    height: 100px;
+  }
+
+  .metro-line__info-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+/* ============================================
+   大图预览弹窗
+   ============================================ */
+
+.metro-line__preview-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: metro-line__fade-in 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+@keyframes metro-line__fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.metro-line__preview-modal {
+  position: relative;
+  width: 90%;
+  max-width: 720px;
+  max-height: 90vh;
+  background: #1a1a1f;
+  border-radius: 20px;
+  overflow: hidden;
+  animation: metro-line__scale-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes metro-line__scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.metro-line__preview-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metro-line__preview-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.metro-line__preview-header {
+  padding: 24px 28px 16px;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metro-line__preview-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.metro-line__preview-line {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 4px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 100px;
+}
+
+.metro-line__preview-img-wrap {
+  padding: 24px;
+  max-height: calc(90vh - 120px);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0a0a0f;
+}
+
+.metro-line__preview-img-wrap img {
+  max-width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,102 @@
+/* ============================================
+   IntroVideo — 首页开场视频组件
+   ============================================ */
+
+.intro-video {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: intro-video__fade-in 0.3s ease;
+}
+
+.intro-video--fading {
+  animation: intro-video__fade-out 0.8s ease forwards;
+}
+
+@keyframes intro-video__fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes intro-video__fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.intro-video__element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* —— 跳过按钮 —— */
+.intro-video__skip {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  padding: 12px 28px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 100px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.intro-video__skip:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* —— 进度条 —— */
+.intro-video__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.intro-video__progress-bar {
+  height: 100%;
+  background: var(--cyber-blue);
+  animation: intro-video__progress linear forwards;
+}
+
+@keyframes intro-video__progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* —— 响应式 —— */
+@media (max-width: 768px) {
+  .intro-video__skip {
+    bottom: 30px;
+    right: 20px;
+    padding: 10px 24px;
+    font-size: 13px;
+  }
+}

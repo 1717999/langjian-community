@@ -1,0 +1,249 @@
+/* ============================================
+   Contact — 联系我们独立页面
+   ============================================ */
+
+.contact-page {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--bg-primary);
+  overflow: auto;
+  padding: 120px 0 80px;
+}
+
+/* Background Watermark */
+.contact-bg-text {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: 320px;
+  font-weight: 900;
+  color: rgba(0, 212, 255, 0.03);
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+  min-height: calc(100vh - 200px);
+}
+
+/* —— Left: Contact Info —— */
+.contact-left {
+  flex: 1;
+  max-width: 500px;
+}
+
+.contact-title {
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 900;
+  color: var(--cyber-blue);
+  letter-spacing: 0.05em;
+  margin: 0 0 60px 0;
+  text-shadow: 0 0 40px var(--cyber-blue-glow);
+}
+
+.contact-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 60px;
+}
+
+.contact-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-info-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--cyber-blue);
+  text-transform: uppercase;
+}
+
+.contact-info-value {
+  font-size: 18px;
+  color: var(--text-primary);
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* —— Socials —— */
+.contact-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-socials-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+.contact-socials-list {
+  display: flex;
+  gap: 16px;
+}
+
+.contact-social-item {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.contact-social-item:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--social-color, var(--cyber-blue));
+  box-shadow: 0 0 20px var(--social-color, var(--cyber-blue));
+  transform: translateY(-2px);
+}
+
+.contact-social-icon {
+  font-size: 16px;
+}
+
+/* —— Right: QR Code —— */
+.contact-right {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-qr-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.contact-qr-circle {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-qr-ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--cyber-blue);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: pulse-ring 3s ease-in-out infinite;
+}
+
+.contact-qr-ring::before,
+.contact-qr-ring::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border: 1px solid var(--cyber-blue);
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.contact-qr-ring::after {
+  inset: -40px;
+  opacity: 0.15;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+.contact-qr-inner {
+  width: 260px;
+  height: 260px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+}
+
+.contact-qr-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.contact-qr-pattern {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+}
+
+.contact-qr-cell {
+  background: #0a0a0a;
+  border-radius: 1px;
+}
+
+.contact-qr-label {
+  font-size: 14px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* —— Responsive —— */
+@media (max-width: 900px) {
+  .contact-container {
+    flex-direction: column;
+    gap: 60px;
+    text-align: center;
+  }
+  .contact-left {
+    max-width: 100%;
+    align-items: center;
+  }
+  .contact-title {
+    font-size: 48px;
+  }
+  .contact-socials-list {
+    justify-content: center;
+  }
+  .contact-qr-circle {
+    width: 260px;
+    height: 260px;
+  }
+  .contact-qr-inner {
+    width: 210px;
+    height: 210px;
+  }
+  .contact-bg-text {
+    font-size: 160px;
+  }
+}
